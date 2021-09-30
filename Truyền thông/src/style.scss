@@ -1,257 +1,121 @@
-$purple: rgb(94, 70, 116);
-$grey: rgb(200, 198, 201);
-$l-grey: rgb(208, 206, 209);
-$dark: rgb(131, 128, 145);
-$white: rgb(255, 255, 255);
-$time: 3s;
+$angleSpan: 40deg;
+$dur: 2s;
+$delayInc: $dur / 100;
+$segments: 30;
+$timing: cubic-bezier(0.6,0,0.4,1);
+$playState: running;
+// colors
+$w1: hsl(0,0%,100%);
+$w1T: hsla(0,0%,100%,0);
+$w2: hsl(0,0%,90%);
+$w2T: hsla(0,0%,90%,0);
+$w3: hsl(0,0%,80%);
+$w3T: hsla(0,0%,80%,0);
+$bk: hsl(0,0%,10%);
+$bkT: hsla(0,0%,10%,0);
+$pk: hsl(0,60%,75%);
+$pkT: hsla(0,60%,75%,0);
 
-@mixin animation ($name) {
-    @-webkit-keyframes #{$name} {@content;}
-    @-moz-keyframes #{$name} {@content;}
-    @-o-keyframes #{$name} {@content;}
-    @keyframes #{$name} {@content;}
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
-
-@mixin animation-use ($name) {
-    -webkit-animation: $name $time infinite linear;
-    -moz-animation: $name $time infinite linear;
-    -o-animation: $name $time infinite linear;
-    animation: $name $time infinite linear;
-}
-
-@mixin turn () {
-    0% {
-        transform: rotate(-.08turn);
-    }
-    100% {
-        transform: rotate(-1.08turn);
-    }
-}
-
-@include animation (rotate) {
-    @include turn();
-}
-
-@include animation (hideEye) {
-    0%, 10%, 85% {
-        margin-top: 0;
-        height: 50px;
-    }
-    30%, 65% {
-        margin-top: 20px;
-        height: 30px;
-    }
-}
-
-@include animation (blink) {
-    0%, 10%, 85% {
-        bottom: 0;
-    }
-    30%, 65% {
-        bottom: 20px;
-    }
-  
-    @include turn();
-}
-
 body {
-    margin: 0;
-    background: $purple;
-    overflow: hidden;
-    
-    .loader {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 260px;
-        height: 260px;
-        margin-left: -130px;
-        margin-top: -130px;
-        
-        .track {
-            width: 100%;
-            height: 100%;
-            border: solid $white;
-            border-width: 5px 5px 3px 0;
-            border-top-color: transparent;
-            border-radius: 50%;
-            margin-left: -3px;
-            margin-top: -3px;
-            @include animation-use(rotate);
-            
-            .mouse {
-                position: absolute;
-                right: 31px;
-                top: 18px;
-                width: 25px;
-                height: 25px;
-                background: $white;
-                border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-                transform: rotate(-95deg);
-                
-                &:before, &:after {
-                    position: absolute;
-                    content: '';
-                    width: 9px;
-                    height: 9px;
-                    border-radius: 50%;
-                    background: inherit;
-                }
-                
-                &:before {
-                    left: 5px;
-                    top: -4px;
-                }
-              
-                &:after {
-                    left: 20px;
-                    top: 11px;
-                }
-            }
-        }
-      
-        .face {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 130px;
-            height: 130px;
-            margin-left: -65px;
-            margin-top: -65px;
-            
-            &:before, &:after {
-                position: absolute;
-                content: '';
-                width: 50%;
-                height: 100%;
-            }
-            
-            &:before {
-                background: $grey;
-                border-top-left-radius: 65px;
-                border-bottom-left-radius: 55px;
-            }
-            
-            &:after {
-                left: 50%;
-                background: $l-grey;
-                border-top-right-radius: 65px;
-                border-bottom-right-radius: 55px;
-            }
-            
-            .ears-container {
-                position: absolute;
-                top: -8px;
-                width: 130px;
-                height: 50px;
-                
-                &:before, &:after {
-                    position: absolute;
-                    content: '';
-                    width: 0;
-                    height: 0;
-                    border-top: 35px solid transparent;
-                    border-bottom: 35px solid transparent;
-                }
-                
-                &:before {
-                    border-left: 35px solid $grey;
-                }
-                
-                &:after {
-                    right: 0;
-                    border-right: 35px solid $l-grey;
-                }
-            }
-          
-            .eyes-container {
-                position: absolute;
-                overflow: hidden;
-                left: 50%;
-                top: 30px;
-                width: 106px;
-                height: 50px;
-                margin-left: -53px;
-                z-index: 1;
-                @include animation-use(hideEye);
-                
-                .eye {
-                    position: relative;
-                    bottom: 0;
-                    float: left;
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    color: $grey;
-                    background: $white;
-                    @include animation-use(blink);
-                             
-                    &:after {
-                        position: absolute;
-                        content: '';
-                        top: 4px;
-                        right: 14px;
-                        width: 12px;
-                        height: 12px;
-                        border-radius: inherit;
-                        background: $dark;
-                    }
-                    
-                    &:last-child {
-                        float: right;
-                        color: $l-grey;
-                    }
-                }
-            }
-            
-            .phiz {
-                position: absolute;
-                left: 50%;
-                top: 66px;
-                width: 32px;
-                height: 48px;
-                margin-left: -16px;
-                z-index: 1;
-                
-                .nose {
-                    width: 100%;
-                    height: 15px;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
-                    border-bottom-left-radius: 25px;
-                    border-bottom-right-radius: 25px;
-                    background: $dark;
-                }
-                
-                .lip {
-                    position: relative;
-                    left: 50%;
-                    width: 4px;
-                    height: 12px;
-                    margin-left: -2px;
-                    background: $dark;
-                    
-                    &:before {
-                        position: absolute;
-                        content: '';
-                        width: 100%;
-                        height: 5px;
-                        background: darken($dark, 5%);
-                    }
-                }
-                
-                .mouth {
-                    position: relative;
-                    left: 50%;
-                    width: 20px;
-                    height: 6px;
-                    margin-left: -13px;
-                    background: $white;
-                    border: 3px solid $dark;
-                    border-bottom-right-radius: 12px;
-                    border-bottom-left-radius: 12px;
-                }
-            }
-        }
-    }
+	background: hsl(210,38%,28%);
+	display: flex;
+	font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
+	height: 100vh;
+	line-height: 1.5;
+}
+.cat {
+	margin: auto;
+	position: relative;
+	width: 16em;
+	height: 16em;
+	&__segment {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 3em;
+		height: 2em;
+		transform: translate(-50%,-50%);
+		&:before {
+			animation: loop $dur $timing infinite $playState;
+			background: linear-gradient(90deg,$w1 20%,$w2 20% 80%,$w1 80%);
+			border-radius: 0.25em;
+			content: "";
+			display: block;
+			will-change: transform;
+			width: 100%;
+			height: 100%;
+		}
+		&:first-of-type {
+			width: 4em;
+			height: 4em;
+			z-index: 1;
+			&:before {
+				background:
+					// eyes
+					radial-gradient(0.25em 0.25em at 1.25em 1.6em,$w1 48%,$w1T 50%),
+					radial-gradient(0.75em 0.75em at 1.25em 1.75em,$bk 48%,$bkT 50%),
+					radial-gradient(0.25em 0.25em at 2.75em 1.6em,$w1 48%,$w1T 50%),
+					radial-gradient(0.75em 0.75em at 2.75em 1.75em,$bk 48%,$bkT 50%),
+					// mouth
+					radial-gradient(0.9em 0.8em at 1.5em 2.65em,$w1 48%,$w1T 50%),
+					radial-gradient(0.9em 0.8em at 2.5em 2.65em,$w1 48%,$w1T 50%),
+					radial-gradient(1em 0.8em at 1.6em 2.75em,$w3 48%,$w3T 50%),
+					radial-gradient(1em 0.8em at 2.4em 2.75em,$w3 48%,$w3T 50%),
+					// nose
+					radial-gradient(0.75em 0.75em at 50% 2.5em,$pk 48%,$pkT 50%),
+					// head
+					radial-gradient(4em 3em at 50% 2em,$w1 48%,$w1T 50%),
+					radial-gradient(4em 3em at 50% 2.2em,$w3 48%,$w3T 50%),
+					// ears
+					radial-gradient(1em 3em at 0.75em 1.5em,$pk 39%,$w1 40% 49%,$w1T 50%),
+					radial-gradient(1em 3em at 3.25em 1.5em,$pk 39%,$w1 40% 49%,$w1T 50%),
+					// paws
+					radial-gradient(1em 2em at 0.5em 2.8em,$w1 48%,$w1T 50%),
+					radial-gradient(1em 2em at 0.5em 3em,$w3 48%,$w3T 50%),
+					radial-gradient(1em 2em at 3.5em 2.8em,$w1 48%,$w1T 50%),
+					radial-gradient(1em 2em at 3.5em 3em,$w3 48%,$w3T 50%);
+				background-repeat: no-repeat;
+			}
+		}
+		&:last-of-type {
+			width: 3em;
+			height: 4em;
+			&:before {
+				background:
+					linear-gradient(90deg,$w1 20%,$w2 20% 80%,$w1 80%) 0 1.5em / 3em 0.5em,
+					radial-gradient(3em 2em at top center,$w2 30%,$w1 31% 48%,$w1T 50%) 0 2em /  3em 2em,
+					radial-gradient(1em 4em at 0.5em 0,$w1 48%,$w1T 50%) 0 2em / 3em 2em,
+					radial-gradient(1em 4em at 2.5em 0,$w1 48%,$w1T 50%) 0 2em / 3em 2em;
+				background-repeat: no-repeat;
+			}
+		}
+		$negAngleHalf: -$angleSpan/2;
+		$angleInc: $angleSpan/$segments;
+		@for $s from 1 through $segments {
+			$rotateBy: $angleInc * ($s - 1);
+			&:nth-of-type(#{$s}) {
+				transform: translate(-50%,-50%) rotate($negAngleHalf + $rotateBy);
+			}
+			&:nth-of-type(#{$s}):before {
+				animation-delay: $delayInc * ($s - 1);
+				transform: translateX(6em);
+			}
+		}
+	}
+}
+
+// animation
+@keyframes loop {
+	from {
+		transform: rotate(0) translateX(6em);
+	}
+	to {
+		transform: rotate(-1turn) translateX(6em);
+	}
 }

@@ -1,26 +1,9 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  background: #d7edee;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 
-.box {
-  width: 800px;
-  height: 600px;
-  overflow: hidden;
-}
-*{
-  font-family:'Courier New', Courier, monospace;
-}
-.text{
-  font-size: 25px;
-  text-decoration: none;
-  color: #20314E;
-  margin: 20px;
+html, body {
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family: 'Space Mono', monospace;
+  letter-spacing:1.6px;
 }

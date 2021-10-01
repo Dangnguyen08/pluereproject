@@ -1,9 +1,7 @@
-# Longcat Spinner
+# Glass Card w/ SVG + GSAP (ode to Phil Goodwin @ Unfold)
 
-A Pen created on CodePen.io. Original URL: [https://codepen.io/jkantner/pen/jOONyoO](https://codepen.io/jkantner/pen/jOONyoO).
+A Pen created on CodePen.io. Original URL: [https://codepen.io/creativeocean/pen/oNzjEYj](https://codepen.io/creativeocean/pen/oNzjEYj).
 
-Well, something is sure taking a loooooooooong time to load.
+Inspired by this slick shot by Phil Goodwin @ Unfold - https://dribbble.com/shots/14647423-Glass-Card-Design
 
-Safari bug: Movements of segments sometimes improperly delayed
-
-Update 3/13/21: Responsive font sizing implemented
+For optimum performance, no SVG blur filter is used; just a blurry JPG that is masked by the card shape :)

@@ -1,10 +1,7 @@
-# Bongo Cat Codes
+# Glass Card w/ SVG + GSAP (ode to Phil Goodwin @ Unfold)
 
-A Pen created on CodePen.io. Original URL: [https://codepen.io/carolineartz/pen/VwYwZaP](https://codepen.io/carolineartz/pen/VwYwZaP).
+A Pen created on CodePen.io. Original URL: [https://codepen.io/creativeocean/pen/oNzjEYj](https://codepen.io/creativeocean/pen/oNzjEYj).
 
-Part of an upcoming personal site update
+Inspired by this slick shot by Phil Goodwin @ Unfold - https://dribbble.com/shots/14647423-Glass-Card-Design
 
-Inspired By
-https://codepen.io/abeatrize/pen/LJqYey
-
-Bongo Cat originally created by @StrayRogue and @DitzyFlama
+For optimum performance, no SVG blur filter is used; just a blurry JPG that is masked by the card shape :)
